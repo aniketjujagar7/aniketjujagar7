@@ -1,0 +1,37 @@
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+SQL> connect system
+Enter password:
+Connected.
+SQL> create table ares( r number(2), area number (14,2));
+
+Table created.
+
+SQL> declare
+  2  r number(5);
+  3  area number(14,2);
+  4  pi constant number(4,2):=3.14;
+  5  BEGIN
+  6  r:=5;
+  7  while r <= 9
+  8      loop
+  9      area:=pi*power(r,2);
+ 10      insert into ares values(r,area);
+ 11      r:=r+1;
+ 12  end loop;
+ 13  end;
+ 14  /
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from ares;
+
+         R       AREA
+---------- ----------
+         5       78.5
+         6     113.04
+         7     153.86
+         8     200.96
+         9     254.34
+
+SQL>
